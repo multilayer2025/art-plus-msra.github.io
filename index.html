@@ -212,10 +212,6 @@
                 <a href="https://openreview.net/profile?id=~Zhicong_Tang1">Keming Wu</a><sup>1</sup>&nbsp;&nbsp;&nbsp;
               </span>
               <span class="author-block">
-                <a href="https://scholar.google.com/citations?view_op=list_works&hl=zh-CN&user=bRw2KEcAAAAJ&gmla=AJsN-F7nLzgMVO6ItXL6uXXwEYTyOInEvBZK9sk7k7Fld2L5SB2W4fP">Ruihong Yin</a>
-                &nbsp;&nbsp;&nbsp;
-              </span>
-              <span class="author-block">
                 <a href="https://openreview.net/profile?id=~Haoxing_Ye1">Yuxuan Luo</a>
                 &nbsp;&nbsp;&nbsp;
               </span>
@@ -254,7 +250,6 @@
               <span class="author-block"><sup> </sup>The University of Electro-Communications&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
               <span class="author-block"><sup> </sup>Tsinghua University&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
               <span class="author-block"><sup> </sup>Peking University&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
-              <span class="author-block"><sup> </sup>University of Science and Technology of China</span>
             </div>
 
             <div class="column has-text-centered">
@@ -385,17 +380,14 @@
   <div class="container-row">
     <!-- <img src="static/img/Real/cake.png" alt="Image 1" style="height: 445px; width: auto;">
     <img src="static/img/Real/table.png" alt="Image 2" style="height: 445px; width: auto;"> -->
-    <img src="static/img/2_26_new/1.png" alt="Image 1">
-    <img src="static/img/2_26_new/2.png" alt="Image 2">
-    <img src="static/img/2_26_new/3.png" alt="Image 3">
-    <img src="static/img/2_26_new/4.png" alt="Image 4">
+    <img src="static/img/teaser/style_11_images_MultilayerFlux.jpg" alt="Image 1">
   </div>
-  <div class="container-row">
+  <!-- <div class="container-row">
     <img src="static/img/2_26_new/5.png" alt="Image 5">
     <img src="static/img/2_26_new/6.png" alt="Image 6">
     <img src="static/img/2_26_new/7.png" alt="Image 7">
     <img src="static/img/2_26_new/8.png" alt="Image 8">
-  </div>
+  </div> -->
 
   <div class="iframe-container">
     <iframe src="https://svgedit.netlify.app/editor/index.html?storagePrompt=false&url=https://raw.githubusercontent.com/WYBar/gradiodemo_svg/main/1733809197842.svg" 
@@ -412,29 +404,19 @@
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              Multi-layer image generation is a fundamental task that enables users to isolate, select, and edit
-              specific image layers, thereby revolutionizing interactions with generative models. In this paper, we
-              introduce the Anonymous Region Transformer (ART), which facilitates the direct generation of variable
-              multi-layer transparent images based on a global text prompt and an anonymous region layout.
+              The generation of multi-layer transparent images with alpha channels has grown increasingly important in recent times. However, current approaches often experience aesthetic degradation when fine-tuned on low-quality crawled datasets.
+              In this paper, we present a novel training-free pipeline that leverages state-of-the-art diffusion models to generate layered transparent images. 
+              This approach bypasses dataset-specific training and maintains visual fidelity. It generates high-quality transparent layers, each with accurate alpha mattes, thereby ensuring superior aesthetics for every layer.
             </p>
             <p>
-              Inspired by Schema theory, this anonymous region layout allows the generative model to autonomously
-              determine which set of visual tokens should align with which text tokens, which is in contrast to the
-              previously dominant semantic layout for the image generation task.
+              Our key contributions include: (i) a generate-then-matting scheme for single-layer transparent image generation that combines diffusion transformers with a matting model. This scheme uses carefully selected suffix background prompts to establish precise attention patterns between visual tokens and suffix text tokens; 
+              (ii) a multi-layer synthesis engine that generates coherent semantic layouts and composites individual transparent layers into complete designs; and 
+              (iii) a Transparent Image Preference Scoring (TIPS) model for assessing layer quality.
             </p>
             <p>
-              In addition, the layer-wise region crop mechanism, which only selects the visual tokens belonging to each
-              anonymous region, significantly reduces attention computation costs and enables the efficient generation
-              of images with numerous distinct layers (e.g., 50+). When compared to the full attention approach, our
-              method is over 12 times faster and exhibits fewer layer conflicts.
-            </p>
-            <p>
-              Furthermore, we propose a high-quality multi-layer transparent image autoencoder that supports the direct
-              encoding and decoding of the transparency of variable multi-layer images in a joint manner.
-            </p>
-            <p>
-              By enabling precise control and scalable layer generation, ART establishes a new paradigm for interactive
-              content creation.
+              Experimental results demonstrate that our framework generates visually appealing transparent images, surpassing existing state-of-the-art methods. 
+              Moreover, training the latest ART model with our high-quality synthesized data significantly improves its layer-wise aesthetic quality and overall visual appeal. 
+              This improvement reaches an unprecedented level, outperforming the original ART model by a large margin.
             </p>
           </div>
         </div>
@@ -447,8 +429,7 @@
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Method Overview</h2>
-        <img src="./static/img/method/autoencoder.png" alt="pipeline" style="width: 60%;">
-        <img src="./static/img/method/transformer.png" alt="pipeline" style="width: 60%;">
+        <img src="./static/img/method/multi-layer-flux-pipeline-v3.png" alt="pipeline" style="width: 60%;">
         <br>
       </div>
     </div>
@@ -464,7 +445,7 @@
 
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 style="text-align: center; font-size: 1.5em; font-weight: bold;">Anonymous Layout</h1>
+        <h2 style="text-align: center; font-size: 1.5em; font-weight: bold;">LayerFLUX: Generating Single-Layer Transparent Image via Generate-then-Matting</h1>
           <img src="./static/img/Core/intro_layout.png" alt="pipeline" style="width: 80%;">
           <br>
       </div>
@@ -472,7 +453,7 @@
 
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 style="text-align: center; font-size: 1.5em; font-weight: bold;">Flexible Layout Support</h1>
+        <h2 style="text-align: center; font-size: 1.5em; font-weight: bold;">MultiLayerFLUX: Generating Multi-Layer Transparent Image via Layout-then-Layers</h1>
           <br>
           <img src="./static/img/Core/flexible_layout.PNG" alt="pipeline" style="width: 80%;">
           <br>
@@ -481,7 +462,7 @@
 
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 style="text-align: center; font-size: 1.5em; font-weight: bold;">Numerous Distinct Layers</h1>
+        <h2 style="text-align: center; font-size: 1.5em; font-weight: bold;">Transparent Image Quality Assessment</h1>
           <br>
           <img src="./static/img/Core/numerous_1.PNG" alt="pipeline" style="width: 70%;">
           <img src="./static/img/Core/numerous_2.png" alt="pipeline" style="width: 70%;">
